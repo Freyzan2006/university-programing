@@ -1,30 +1,37 @@
 from typing import List
 
-def quadratic_formula(a: int, b: int, c: int) -> List[float]:
+def quadratic_formula(a: float, b: float, c: float) -> List[float]:
     
-    d = b**2 - 4 * a * c 
-    
-    if d == 0:
+    D = b**2 - 4 * a * c 
+    if D<0:
+        raise Exception("Нет действительных корней")
+    elif a==0 and b==0 and c==0:
+        raise Exception("не a, b, c = 0")
+    elif D == 0:
         print("Один квадратный корень")
-    elif d < 0:
-        print("Нету действительных корней")
-        return []
+        x = -b / (2 * a) 
+        return [x]
     else:
-        print("Есть два корня")
-    
-    x1 = ((-1 * b) + (d**0.5)) / 2 * a 
-    x2 = ((-1 * b) - (d**0.5)) / 2 * a 
-    
-    return [x1, x2]
+        x1 = ((-1 * D) + (D**0.5)) / 2 * a 
+        x2 = ((-1 * D) - (D**0.5)) / 2 * a 
+        return [x1, x2]
+
+# 1, -5, 6 - два
+# 1, 4, 4 - один
 
 def main():
-    a = 1
-    b = -3
-    c = 2
+    while True:
+        print("--------------------------")
+        a = float(input("a = "))
+        b = float(input("b = "))
+        c = float(input("c = "))
     
-    result: List[float] = quadratic_formula(a = a, b = b, c = c)
-    print(f"Входные данные: a = {a}; b = {b}; c = {c}")
-    print(f"результат: {result}")
+        try:
+            result: List[float] = quadratic_formula(a, b, c)
+            print(f"Входные данные: a = {a}; b = {b}; c = {c}")
+            print(f"Результат: {result}")
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":
