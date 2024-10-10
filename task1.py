@@ -1,13 +1,17 @@
 def reverse_words(text: str) -> str:
-    text_split = text.split(" ")
+    text_split = text.split()
     
-    result = ""
-    for word in text_split:
-        result += word[::-1] + " "
+    words = [word[::-1] if len(word) >= 5 else word for word in text_split]
+    result = " ".join(words)
     
     return result
 
-def show_result() -> None:
-    print("---------task 1--------------")
+def main() -> None:
     inp = "Hey fellow warriors"
     print(inp, "-->", reverse_words(inp)) 
+
+
+
+# print("---------task 1--------------")
+# inp = "Hey fellow warriors"
+# print(inp, "-->", reverse_words(inp)) 
